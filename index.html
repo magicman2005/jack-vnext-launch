@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Final 21 Days of Jack Lauricourt — Launch Sequence</title>
+<meta name="description" content="A live countdown to Jack Lauricourt's transition from Copilot Solution Engineer to AI Workforce Seller.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<style>
+/* ============================================================
+   JACK vNEXT — LAUNCH SEQUENCE
+   Single file. Zero external dependencies. Runs offline.
+   ------------------------------------------------------------
+   >>> EDIT THESE TWO LINES IN THE <script> BLOCK TO RETARGET:
+       const LAUNCH_AT   = '2026-10-23T17:00:00+01:00';
+       const SEQUENCE_AT = '2026-10-02T00:00:00+01:00';
+   ============================================================ */
+
+:root{
+  /* --- core palette: Microsoft keynote x F1 launch --- */
+  --void:        #03050e;
+  --deep:        #070a18;
+  --ms-blue:     #0078d4;
+  --electric:    #3b82f6;
+  --purple:      #8b5cf6;
+  --violet:      #a855f7;
+  --magenta:     #e879f9;
+  --cyan:        #22d3ee;
+  --ice:         #67e8f9;
+  --amber:       #fbbf24;
+
+  --ink:         #eef1ff;
+  --muted:       rgba(238,241,255,.66);
+  --soft:        rgba(238,241,255,.42);
+  --faint:       rgba(238,241,255,.16);
+
+  --glass:       rgba(255,255,255,.045);
+  --glass-hi:    rgba(255,255,255,.075);
+  --edge:        rgba(255,255,255,.12);
+  --edge-hi:     rgba(255,255,255,.26);
+
+  --grad-hero:   linear-gradient(104deg,#67e8f9 0%,#38bdf8 18%,#3b82f6 38%,#8b5cf6 62%,#e879f9 84%,#67e8f9 100%);
+  --grad-rule:   linear-gradient(90deg,transparent,var(--cyan),var(--purple),var(--magenta),transparent);
+  --grad-btn:    linear-gradient(118deg,var(--cyan),var(--electric) 45%,var(--violet));
+
+  --glow-cyan:   0 0 60px rgba(34,211,238,.28);
+  --glow-purple: 0 0 80px rgba(139,92,246,.30);
+
+  --font-display: "Segoe UI Variable Display","Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-body:    "Segoe UI Variable Text","Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-mono:    "Cascadia Code","Cascadia Mono",Consolas,"SF Mono",ui-monospace,"Courier New",monospace;
+
+  --gutter: clamp(1.25rem, 4vw, 5.5rem);
+  --maxw: 1320px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:clamp(.95rem,.42vw + .86rem,1.08rem);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body.is-locked{overflow:hidden}
+img,svg{display:block;max-width:100%}
+::selection{background:rgba(139,92,246,.4);color:#fff}
+
+/* scrollbar */
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:#05070f}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--cyan),var(--purple));
+  border-radius:99px;border:3px solid #05070f;
+}
+
+/* ============================================================
+   ATMOSPHERE LAYERS
+   ============================================================ */
+.stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#neural{position:absolute;inset:0;width:100%;height:100%;opacity:.95}
+
+.aurora{position:absolute;inset:-25%;filter:blur(90px);opacity:.82;mix-blend-mode:screen}
+.aurora i{position:absolute;display:block;border-radius:50%;animation:drift 32s ease-in-out infinite}
+.aurora i:nth-child(1){width:60vw;height:60vw;left:-12vw;top:-16vw;background:radial-gradient(circle at 35% 35%,rgba(59,130,246,.82),transparent 62%);animation-duration:34s}
+.aurora i:nth-child(2){width:52vw;height:52vw;right:-14vw;top:4vh;background:radial-gradient(circle at 60% 40%,rgba(139,92,246,.78),transparent 62%);animation-duration:41s;animation-delay:-8s}
+.aurora i:nth-child(3){width:46vw;height:46vw;left:24vw;bottom:-20vh;background:radial-gradient(circle at 50% 50%,rgba(34,211,238,.6),transparent 62%);animation-duration:37s;animation-delay:-18s}
+.aurora i:nth-child(4){width:34vw;height:34vw;right:14vw;bottom:-8vh;background:radial-gradient(circle at 50% 50%,rgba(232,121,249,.5),transparent 64%);animation-duration:46s;animation-delay:-26s}
+@keyframes drift{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  33%{transform:translate3d(6vw,-4vh,0) scale(1.14)}
+  66%{transform:translate3d(-5vw,5vh,0) scale(.9)}
+}
+
+/* perspective grid floor — F1 pit-lane energy */
+.floor{
+  position:absolute;left:-50%;right:-50%;bottom:-6vh;height:62vh;
+  background-image:
+    linear-gradient(to right,rgba(103,232,249,.17) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(139,92,246,.17) 1px,transparent 1px);
+  background-size:62px 62px;
+  transform:perspective(420px) rotateX(74deg);
+  transform-origin:bottom center;
+  mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.45) 42%,transparent 86%);
+  -webkit-mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.45) 42%,transparent 86%);
+  animation:floorRun 7s linear infinite;opacity:.65;
+}
+@keyframes floorRun{to{background-position:0 62px,0 62px}}
+
+.scanlines{
+  position:absolute;inset:0;opacity:.26;
+  background:repeating-linear-gradient(to bottom,rgba(255,255,255,.055) 0 1px,transparent 1px 4px);
+}
+.grain{
+  position:absolute;inset:-200%;opacity:.055;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+  animation:grainShift .7s steps(3) infinite;
+}
+@keyframes grainShift{
+  0%{transform:translate(0,0)}33%{transform:translate(-3%,2%)}66%{transform:translate(2%,-3%)}100%{transform:translate(0,0)}
+}
+.vignette{
+  position:absolute;inset:0;
+  background:radial-gradient(135% 98% at 50% 40%,transparent 44%,rgba(3,5,14,.5) 78%,rgba(3,5,14,.92) 100%);
+}
+#fx{position:fixed;inset:0;z-index:70;pointer-events:none;width:100%;height:100%}
+
+/* ============================================================
+   SHELL / TYPE
+   ============================================================ */
+.wrap{position:relative;z-index:2}
+.bound{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+section{position:relative;padding-block:clamp(5rem,11vh,9.5rem)}
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:clamp(.62rem,.26vw + .57rem,.76rem);
+  letter-spacing:.42em;text-transform:uppercase;
+  color:var(--ice);margin:0 0 1.1rem;
+  display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+}
+.eyebrow::before{
+  content:"";width:clamp(26px,4vw,58px);height:1px;flex:none;
+  background:linear-gradient(90deg,transparent,var(--cyan));
+}
+.sec-title{
+  font-family:var(--font-display);
+  font-size:clamp(1.85rem,3.3vw,3.4rem);
+  font-weight:800;letter-spacing:-.035em;line-height:1.04;
+  margin:0 0 .75rem;
+}
+.sec-sub{color:var(--muted);max-width:62ch;margin:0 0 clamp(2.2rem,4vw,3.4rem);font-size:1.02em}
+.grad-text{
+  background:var(--grad-hero);background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:sheen 11s linear infinite;
+}
+@keyframes sheen{to{background-position:300% 0}}
+
+.glass{
+  position:relative;
+  background:var(--glass);
+  border:1px solid var(--edge);
+  border-radius:20px;
+  backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  box-shadow:0 24px 70px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1);
+  overflow:hidden;
+}
+.glass::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(145deg,rgba(255,255,255,.1),transparent 36%,transparent 68%,rgba(103,232,249,.07));
+}
+
+/* ============================================================
+   TOP RAIL
+   ============================================================ */
+.rail{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.85rem var(--gutter);
+  background:linear-gradient(180deg,rgba(3,5,14,.88),rgba(3,5,14,0));
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--soft);
+}
+.rail-id{display:flex;align-items:center;gap:.65rem;color:var(--ink)}
+.rail-live{display:flex;align-items:center;gap:.5rem;color:var(--ice)}
+.pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--cyan);flex:none;
+  box-shadow:0 0 0 0 rgba(34,211,238,.75);animation:pulse 2s ease-out infinite;
+}
+@keyframes pulse{70%{box-shadow:0 0 0 13px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+.rail-mid{display:none}
+@media(min-width:900px){.rail-mid{display:block;color:var(--soft)}}
+
+/* copilot ribbon mark */
+.mark{width:26px;height:26px;flex:none;filter:drop-shadow(0 0 10px rgba(103,232,249,.55))}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding-top:clamp(5rem,12vh,8rem);padding-bottom:clamp(3rem,7vh,5rem);
+  text-align:center;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.5rem 1.05rem;border-radius:999px;
+  border:1px solid rgba(103,232,249,.34);
+  background:rgba(34,211,238,.07);
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ice);margin-inline:auto;
+  box-shadow:0 0 34px rgba(34,211,238,.14) inset;
+}
+h1.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(2.6rem,9.2vw,8.2rem);
+  font-weight:900;letter-spacing:-.052em;line-height:.93;
+  margin:clamp(1.1rem,2.6vw,2rem) 0 0;
+  text-wrap:balance;
+}
+h1.hero-title .line{display:block}
+/* the sheen lives on an INNER span so it can't collide with the
+   entrance animation applied to [data-enter] on the outer element */
+h1.hero-title .name-ink{
+  display:block;
+  background:var(--grad-hero);background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:sheen 9s linear infinite;
+  filter:drop-shadow(0 0 48px rgba(139,92,246,.45));
+}
+.hero-sub{
+  font-size:clamp(1rem,1.5vw,1.42rem);
+  color:var(--muted);max-width:40ch;margin:1.3rem auto 0;font-weight:400;
+}
+.hero-sub b{color:var(--ink);font-weight:600}
+.rule{height:1px;background:var(--grad-rule);margin:clamp(1.8rem,3.5vw,2.8rem) auto 0;max-width:720px;opacity:.85}
+
+/* --- countdown --- */
+.clock{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(.5rem,1.3vw,1.15rem);
+  max-width:1060px;margin:clamp(1.9rem,4vw,3rem) auto 0;
+}
+.unit{padding:clamp(.9rem,2vw,1.7rem) .5rem clamp(.75rem,1.6vw,1.2rem);border-radius:18px}
+.unit::before{
+  content:"";position:absolute;inset:0 0 auto;height:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),transparent);
+  opacity:.9;
+}
+.unit .num{
+  font-family:var(--font-mono);
+  font-size:clamp(2.4rem,8.4vw,6.2rem);
+  font-weight:700;line-height:.94;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;
+  background:linear-gradient(180deg,#ffffff,#cfe4ff 44%,#8ab4ff 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 70px rgba(59,130,246,.3);
+  display:block;
+}
+.unit.tick .num{animation:tickFlash .42s cubic-bezier(.2,.9,.25,1)}
+@keyframes tickFlash{
+  0%{transform:translateY(-10%) scale(1.07);filter:blur(5px) brightness(1.9)}
+  100%{transform:none;filter:none}
+}
+.unit .lbl{
+  font-family:var(--font-mono);font-size:clamp(.56rem,.75vw,.74rem);
+  letter-spacing:.38em;text-transform:uppercase;color:var(--soft);margin-top:.55rem;
+}
+.unit.crit .num{background:linear-gradient(180deg,#fff,#ffd9a8 48%,#fb923c);animation:critGlow 1.3s ease-in-out infinite alternate}
+@keyframes critGlow{to{filter:drop-shadow(0 0 26px rgba(251,146,60,.75))}}
+
+/* --- progress --- */
+.prog-wrap{max-width:1060px;margin:clamp(1.5rem,3vw,2.3rem) auto 0;text-align:left}
+.prog-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--soft);
+  margin-bottom:.65rem;
+}
+.prog-head b{color:var(--ice);font-weight:600;letter-spacing:.18em}
+.track{
+  position:relative;height:12px;border-radius:99px;overflow:hidden;
+  background:rgba(255,255,255,.055);border:1px solid var(--edge);
+}
+.fill{
+  position:absolute;inset:0 auto 0 0;width:0%;border-radius:99px;
+  background:linear-gradient(90deg,var(--cyan),var(--electric) 45%,var(--violet) 75%,var(--magenta));
+  box-shadow:0 0 26px rgba(139,92,246,.75);
+  transition:width 1s cubic-bezier(.4,0,.2,1);
+}
+.fill::after{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(115deg,rgba(255,255,255,.26) 0 10px,transparent 10px 22px);
+  animation:stripe 1.1s linear infinite;
+}
+@keyframes stripe{to{background-position:44px 0}}
+.prog-foot{
+  display:flex;justify-content:space-between;gap:1rem;margin-top:.6rem;
+  font-family:var(--font-mono);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);
+}
+
+.scroll-cue{
+  margin-top:clamp(2rem,4.5vw,3.4rem);display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.42em;text-transform:uppercase;color:var(--faint);
+}
+.scroll-cue span.bar{width:1px;height:46px;background:linear-gradient(180deg,var(--cyan),transparent);animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.25;transform:scaleY(.55)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ============================================================
+   MILESTONES
+   ============================================================ */
+.miles{display:grid;gap:clamp(.9rem,1.6vw,1.3rem);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.mile{padding:clamp(1.3rem,2.2vw,1.9rem);border-radius:18px;transition:transform .45s cubic-bezier(.2,.9,.25,1),border-color .45s}
+.mile:hover{transform:translateY(-7px);border-color:var(--edge-hi)}
+.mile .node{
+  width:13px;height:13px;border-radius:50%;background:rgba(255,255,255,.13);
+  border:1px solid var(--edge-hi);margin-bottom:1.1rem;position:relative;
+}
+.mile .wk{
+  font-family:var(--font-mono);font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--soft);margin-bottom:.5rem;
+}
+.mile .say{font-family:var(--font-display);font-size:clamp(1.02rem,1.5vw,1.3rem);font-weight:600;line-height:1.3;letter-spacing:-.02em;margin:0 0 .9rem}
+.mile .state{
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);
+  display:flex;align-items:center;gap:.45rem;
+}
+.mile.done{opacity:.52}
+.mile.done .node{background:var(--cyan);box-shadow:0 0 16px rgba(34,211,238,.7)}
+.mile.done .state{color:var(--ice)}
+.mile.now{
+  border-color:rgba(139,92,246,.55);
+  background:linear-gradient(145deg,rgba(139,92,246,.14),rgba(34,211,238,.05));
+  box-shadow:var(--glow-purple),0 24px 70px rgba(0,0,0,.5);
+  transform:translateY(-5px);
+}
+.mile.now .node{background:var(--magenta);box-shadow:0 0 0 0 rgba(232,121,249,.7);animation:pulse 2s ease-out infinite}
+.mile.now .state{color:var(--magenta)}
+.mile.now .wk{color:var(--ice)}
+
+/* ============================================================
+   TELEMETRY
+   ============================================================ */
+.stats{display:grid;gap:clamp(.9rem,1.6vw,1.3rem);grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.stat{padding:clamp(1.4rem,2.3vw,2rem);border-radius:18px;transition:transform .45s cubic-bezier(.2,.9,.25,1),border-color .45s}
+.stat:hover{transform:translateY(-7px) scale(1.012);border-color:var(--edge-hi)}
+.stat .ico{width:34px;height:34px;margin-bottom:1rem;opacity:.95}
+.stat .val{
+  font-family:var(--font-mono);font-size:clamp(2.1rem,4.4vw,3.5rem);font-weight:700;line-height:1;
+  letter-spacing:-.045em;font-variant-numeric:tabular-nums;
+  background:linear-gradient(180deg,#fff,#a9c8ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat .key{font-size:.96rem;color:var(--ink);font-weight:600;margin-top:.55rem;letter-spacing:-.01em}
+.stat .note{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:.45rem;min-height:1.6em}
+.stat .spark{display:flex;align-items:flex-end;gap:3px;height:26px;margin-top:1rem;opacity:.72}
+.stat .spark i{flex:1;background:linear-gradient(180deg,var(--cyan),rgba(139,92,246,.25));border-radius:2px;transition:height .6s cubic-bezier(.4,0,.2,1)}
+.stat[data-trend="up"] .val{background:linear-gradient(180deg,#fff,#fcd9a0);-webkit-background-clip:text;background-clip:text}
+.stat[data-trend="up"] .spark i{background:linear-gradient(180deg,var(--amber),rgba(232,121,249,.22))}
+
+/* ============================================================
+   QUOTES
+   ============================================================ */
+.quote-stage{position:relative;padding:clamp(2rem,4.5vw,3.8rem) clamp(1.5rem,4vw,4rem);border-radius:26px;overflow:hidden}
+.quote-stage::before{
+  content:"";position:absolute;left:-10%;top:-40%;width:60%;height:180%;
+  background:radial-gradient(circle,rgba(139,92,246,.25),transparent 68%);filter:blur(42px);
+}
+.qmark{
+  font-family:Georgia,"Times New Roman",serif;font-size:clamp(5rem,14vw,11rem);line-height:.6;
+  color:transparent;background:var(--grad-hero);background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;opacity:.42;animation:sheen 11s linear infinite;
+  height:.42em;overflow:hidden;
+}
+.qbody{position:relative;min-height:clamp(9rem,17vw,11rem)}
+.q{
+  position:absolute;inset:0;opacity:0;transform:translateY(16px);
+  transition:opacity .75s cubic-bezier(.4,0,.2,1),transform .75s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+.q.on{opacity:1;transform:none}
+.q p{
+  font-family:var(--font-display);font-size:clamp(1.12rem,2.5vw,2.05rem);font-weight:500;
+  line-height:1.34;letter-spacing:-.025em;margin:0 0 1.3rem;color:var(--ink);text-wrap:balance;
+}
+.q .who{display:flex;align-items:center;gap:.85rem}
+.q .av{
+  width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-family:var(--font-mono);font-size:.74rem;font-weight:700;letter-spacing:.02em;color:#04060f;
+  background:var(--grad-btn);box-shadow:0 0 22px rgba(59,130,246,.5);
+}
+.q .who b{display:block;font-size:.92rem;font-weight:650;letter-spacing:-.01em}
+.q .who span{display:block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.qdots{display:flex;gap:.55rem;margin-top:clamp(1.3rem,2.5vw,2rem);position:relative}
+.qdots button{
+  width:30px;height:3px;border:0;padding:0;border-radius:99px;cursor:pointer;
+  background:rgba(255,255,255,.17);transition:background .4s,width .4s;
+}
+.qdots button[aria-current="true"]{background:linear-gradient(90deg,var(--cyan),var(--violet));width:52px}
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+.achs{display:grid;gap:clamp(.9rem,1.6vw,1.4rem);grid-template-columns:repeat(auto-fit,minmax(min(100%,268px),1fr))}
+.ach{padding:clamp(1.5rem,2.4vw,2.1rem);border-radius:20px;transition:transform .5s cubic-bezier(.2,.9,.25,1),border-color .5s}
+.ach:hover{transform:translateY(-9px);border-color:var(--edge-hi)}
+.ach .ico{width:42px;height:42px;margin-bottom:1.15rem}
+.ach h3{font-family:var(--font-display);font-size:clamp(1.1rem,1.7vw,1.4rem);font-weight:700;letter-spacing:-.025em;margin:0 0 .6rem}
+.ach p{color:var(--muted);font-size:.94rem;margin:0 0 1.35rem;line-height:1.6}
+.ach .meter{height:5px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;margin-bottom:.6rem}
+.ach .meter i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--magenta));transition:width 1.6s cubic-bezier(.2,.9,.25,1);box-shadow:0 0 18px rgba(139,92,246,.6)}
+.ach .score{
+  display:flex;justify-content:space-between;
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);
+}
+.ach .score b{color:var(--ice);font-weight:600}
+
+/* ============================================================
+   OUTRO
+   ============================================================ */
+.outro{text-align:center;padding-bottom:clamp(4rem,9vh,7rem)}
+.outro h2{font-family:var(--font-display);font-size:clamp(1.9rem,5.6vw,4.6rem);font-weight:900;letter-spacing:-.045em;line-height:1;margin:0 0 1.1rem}
+.outro p{color:var(--muted);max-width:56ch;margin:0 auto 2.2rem}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+.btn{
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;
+  padding:.92rem 1.6rem;border-radius:999px;cursor:pointer;border:1px solid var(--edge);
+  background:var(--glass);color:var(--ink);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:transform .3s cubic-bezier(.2,.9,.25,1),border-color .3s,background .3s,box-shadow .3s;
+}
+.btn:hover{transform:translateY(-3px);border-color:var(--edge-hi);background:var(--glass-hi);box-shadow:var(--glow-cyan)}
+.btn.primary{background:var(--grad-btn);border-color:transparent;color:#04060f;font-weight:700;box-shadow:0 14px 44px rgba(59,130,246,.42)}
+.btn.primary:hover{box-shadow:0 18px 58px rgba(139,92,246,.6)}
+
+footer{
+  border-top:1px solid rgba(255,255,255,.07);
+  padding:1.9rem var(--gutter) 2.6rem;text-align:center;
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);
+  line-height:2.1;
+}
+footer b{color:var(--soft);font-weight:400}
+
+/* ============================================================
+   BANNER (every 30s)
+   ============================================================ */
+.banner{
+  position:fixed;left:50%;top:clamp(3.4rem,7vh,4.6rem);z-index:65;
+  transform:translate(-50%,-150%);
+  display:flex;align-items:center;gap:.8rem;
+  padding:.78rem 1.4rem;border-radius:999px;max-width:min(92vw,660px);
+  background:rgba(8,11,26,.82);border:1px solid rgba(103,232,249,.34);
+  backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 42px rgba(34,211,238,.17) inset;
+  font-family:var(--font-mono);font-size:clamp(.62rem,1.1vw,.76rem);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);
+  transition:transform .72s cubic-bezier(.16,1.1,.3,1),opacity .55s;
+  opacity:0;pointer-events:none;
+}
+.banner.on{transform:translate(-50%,0);opacity:1}
+.banner .dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--amber);box-shadow:0 0 12px var(--amber);animation:pulse 1.6s ease-out infinite}
+.banner .txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:620px){.banner .txt{white-space:normal}}
+
+/* ============================================================
+   LAUNCHED STATE
+   ============================================================ */
+body.launched .unit .num{background:linear-gradient(180deg,#fff,#b9f6ff 50%,#67e8f9);-webkit-background-clip:text;background-clip:text}
+.ga{
+  display:none;margin:clamp(1.6rem,3.4vw,2.6rem) auto 0;padding:1.05rem 1.9rem;border-radius:999px;
+  border:1px solid rgba(103,232,249,.45);background:rgba(34,211,238,.1);
+  font-family:var(--font-mono);font-size:clamp(.68rem,1.4vw,.92rem);letter-spacing:.3em;text-transform:uppercase;color:var(--ice);
+  max-width:max-content;box-shadow:0 0 60px rgba(34,211,238,.3);
+  animation:gaIn .9s cubic-bezier(.16,1.1,.3,1) both;
+}
+body.launched .ga{display:block}
+@keyframes gaIn{from{opacity:0;transform:translateY(22px) scale(.94)}}
+
+/* ============================================================
+   ENTRANCE / REVEAL
+   ============================================================ */
+[data-enter]{opacity:0;transform:translateY(26px);filter:blur(7px)}
+.ready [data-enter]{
+  animation:enter 1.05s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay:calc(var(--d,0) * 1ms);
+}
+@keyframes enter{to{opacity:1;transform:none;filter:none}}
+
+.reveal{opacity:0;transform:translateY(38px);filter:blur(6px);
+  transition:opacity .95s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1),filter .95s}
+.reveal.in{opacity:1;transform:none;filter:none}
+.stagger>*{opacity:0;transform:translateY(30px) scale(.985);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(1){transition-delay:.05s}
+.stagger.in>*:nth-child(2){transition-delay:.15s}
+.stagger.in>*:nth-child(3){transition-delay:.25s}
+.stagger.in>*:nth-child(4){transition-delay:.35s}
+.stagger.in>*:nth-child(5){transition-delay:.45s}
+
+@media(max-width:760px){
+  .clock{grid-template-columns:repeat(2,1fr)}
+  .rail{font-size:.58rem;letter-spacing:.14em}
+  .rail-id span{display:none}
+  .hero{padding-top:clamp(8.5rem,20vh,11rem)}
+  .banner{padding:.6rem 1rem;letter-spacing:.1em;max-width:88vw}
+  .prog-foot{flex-direction:column;align-items:flex-start;gap:.3rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  [data-enter],.reveal,.stagger>*{opacity:1!important;transform:none!important;filter:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== shared icon gradient (objectBoundingBox so it scales to any icon) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="icg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#67e8f9"/>
+      <stop offset=".5" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#e879f9"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ======================= ATMOSPHERE ======================= -->
+<div class="stage" aria-hidden="true">
+  <div class="aurora"><i></i><i></i><i></i><i></i></div>
+  <canvas id="neural"></canvas>
+  <div class="floor"></div>
+  <div class="scanlines"></div>
+  <div class="grain"></div>
+  <div class="vignette"></div>
+</div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<!-- ======================= TOP RAIL ========================= -->
+<div class="rail">
+  <div class="rail-id">
+    <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="cg" x1="4" y1="8" x2="44" y2="40" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#67e8f9"/><stop offset=".5" stop-color="#3b82f6"/><stop offset="1" stop-color="#e879f9"/>
+        </linearGradient>
+      </defs>
+      <path d="M14 34c-5 0-9-4-9-9s4-9 9-9c1.6-6 7-10 13.4-10C35 6 41 12 42 20c3 1.6 5 4.7 5 8 0 5-4 9-9 9H14Z"
+            stroke="url(#icg)" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M17 25c2.6-4 5.6-6 9-6 4.4 0 6.4 3.2 9.6 3.2 1.6 0 3-.6 4.4-2"
+            stroke="url(#icg)" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>
+    <span>Jack&nbsp;vNext</span>
+  </div>
+  <div class="rail-mid" id="railMid">Sequence nominal · All systems go</div>
+  <div class="rail-live"><span class="pulse"></span><span>Live</span></div>
+</div>
+
+<!-- ======================= BANNER =========================== -->
+<div class="banner" id="banner" role="status" aria-live="polite">
+  <span class="dot"></span><span class="txt" id="bannerTxt"></span>
+</div>
+
+<main class="wrap">
+
+<!-- ======================= HERO ============================= -->
+<section class="hero bound" id="top">
+  <span class="badge" data-enter style="--d:120">● Launch sequence engaged</span>
+
+  <h1 class="hero-title">
+    <span class="line" data-enter style="--d:260">The Final 21 Days of</span>
+    <span class="line" data-enter style="--d:420"><span class="name-ink">Jack Lauricourt</span></span>
+  </h1>
+
+  <p class="hero-sub" data-enter style="--d:620">
+    From <b>Copilot SE</b> to <b>AI Workforce Seller</b>.<br>The next chapter begins.
+  </p>
+
+  <div class="rule" data-enter style="--d:720"></div>
+
+  <div class="clock" data-enter style="--d:840">
+    <div class="glass unit" id="u-d"><span class="num" id="n-d">21</span><div class="lbl">Days</div></div>
+    <div class="glass unit" id="u-h"><span class="num" id="n-h">00</span><div class="lbl">Hours</div></div>
+    <div class="glass unit" id="u-m"><span class="num" id="n-m">00</span><div class="lbl">Minutes</div></div>
+    <div class="glass unit" id="u-s"><span class="num" id="n-s">00</span><div class="lbl">Seconds</div></div>
+  </div>
+
+  <div class="ga" id="ga">◆ Jack v2.0 — Generally Available</div>
+
+  <div class="prog-wrap" data-enter style="--d:960">
+    <div class="prog-head">
+      <span>Transition progress</span>
+      <span><b id="progPct">0.0%</b> complete · <b id="dayOf">Day 1 of 21</b></span>
+    </div>
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="prog-foot">
+      <span>T-21d · Copilot SE</span>
+      <span id="progPhase">Phase: denial</span>
+      <span>T-0 · AI Workforce Seller</span>
+    </div>
+  </div>
+
+  <div class="scroll-cue" data-enter style="--d:1120">
+    <span>Scroll for telemetry</span><span class="bar"></span>
+  </div>
+</section>
+
+<!-- ======================= MILESTONES ======================= -->
+<section class="bound">
+  <p class="eyebrow reveal">Mission timeline</p>
+  <h2 class="sec-title reveal">The <span class="grad-text">four stages</span> of leaving a role</h2>
+  <p class="sec-sub reveal">Clinically observed in Solution Engineers worldwide. Jack is currently exhibiting textbook symptoms.</p>
+
+  <div class="miles stagger" id="miles">
+    <article class="glass mile" data-from="21" data-to="15">
+      <div class="node"></div>
+      <div class="wk">Week 3</div>
+      <h3 class="say">"Still pretending there's plenty of time."</h3>
+      <div class="state">Status: <span data-state>Pending</span></div>
+    </article>
+    <article class="glass mile" data-from="14" data-to="8">
+      <div class="node"></div>
+      <div class="wk">Week 2</div>
+      <h3 class="say">"Panic beginning to set in."</h3>
+      <div class="state">Status: <span data-state>Pending</span></div>
+    </article>
+    <article class="glass mile" data-from="7" data-to="2">
+      <div class="node"></div>
+      <div class="wk">Week 1</div>
+      <h3 class="say">"Knowledge transfer mode activated."</h3>
+      <div class="state">Status: <span data-state>Pending</span></div>
+    </article>
+    <article class="glass mile" data-from="1" data-to="0">
+      <div class="node"></div>
+      <div class="wk">Final day</div>
+      <h3 class="say">"Release Candidate: Jack vNext."</h3>
+      <div class="state">Status: <span data-state>Pending</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- ======================= TELEMETRY ======================== -->
+<section class="bound">
+  <p class="eyebrow reveal">Live telemetry · refreshed every second</p>
+  <h2 class="sec-title reveal">Remaining <span class="grad-text">capacity</span></h2>
+  <p class="sec-sub reveal">Pulled live from the Jack Lauricourt Operational Data Plane. Accuracy: directionally correct.</p>
+
+  <div class="stats stagger" id="stats">
+
+    <article class="glass stat" data-trend="down" data-k="demos">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#icg)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="3.5" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17.5V21"/><path d="M7 11.5l2.6 2.6L17 7"/>
+      </svg>
+      <div class="val" data-val>0</div>
+      <div class="key">Copilot demos remaining</div>
+      <div class="note" data-note>—</div>
+      <div class="spark" data-spark></div>
+    </article>
+
+    <article class="glass stat" data-trend="down" data-k="chats">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#icg)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-4.2-1L3 20.5l1.7-4.6A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/>
+        <path d="M8.5 11.5h7M8.5 8.5h4"/>
+      </svg>
+      <div class="val" data-val>0</div>
+      <div class="key">Teams chats remaining</div>
+      <div class="note" data-note>—</div>
+      <div class="spark" data-spark></div>
+    </article>
+
+    <article class="glass stat" data-trend="down" data-k="coffee">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#icg)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 9h13v6.5A4.5 4.5 0 0 1 11.5 20h-4A4.5 4.5 0 0 1 3 15.5V9Z"/>
+        <path d="M16 10.5h2.2a2.8 2.8 0 1 1 0 5.6H16"/><path d="M6.5 5.5c0-1 .8-1.4.8-2.4M10 5.5c0-1 .8-1.4.8-2.4"/>
+      </svg>
+      <div class="val" data-val>0</div>
+      <div class="key">Coffees before departure</div>
+      <div class="note" data-note>—</div>
+      <div class="spark" data-spark></div>
+    </article>
+
+    <article class="glass stat" data-trend="up" data-k="around">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#icg)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 11.2A5.2 5.2 0 0 1 8.2 6H20"/><path d="m16.4 2.4 3.8 3.6-3.8 3.6"/>
+        <path d="M21 12.8a5.2 5.2 0 0 1-5.2 5.2H4"/><path d="m7.6 21.6-3.8-3.6 3.8-3.6"/>
+      </svg>
+      <div class="val" data-val>0</div>
+      <div class="key">Times he'll say "I'll still be around"</div>
+      <div class="note" data-note>—</div>
+      <div class="spark" data-spark></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ======================= QUOTES =========================== -->
+<section class="bound">
+  <p class="eyebrow reveal">Field reports</p>
+  <h2 class="sec-title reveal">What the <span class="grad-text">team</span> is saying</h2>
+  <p class="sec-sub reveal">Collected from colleagues who swear they're fine about this.</p>
+
+  <div class="glass quote-stage reveal">
+    <div class="qmark" aria-hidden="true">&ldquo;</div>
+    <div class="qbody" id="qbody"></div>
+    <div class="qdots" id="qdots"></div>
+  </div>
+</section>
+
+<!-- ======================= ACHIEVEMENTS ===================== -->
+<section class="bound">
+  <p class="eyebrow reveal">Release notes · v1.x</p>
+  <h2 class="sec-title reveal">The <span class="grad-text">Jack Lauricourt</span> changelog</h2>
+  <p class="sec-sub reveal">A non-exhaustive summary of shipped value prior to the vNext migration.</p>
+
+  <div class="achs stagger" id="achs">
+
+    <article class="glass ach">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#icg)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 21s-7.5-4.6-7.5-10A4.5 4.5 0 0 1 12 7.6 4.5 4.5 0 0 1 19.5 11c0 5.4-7.5 10-7.5 10Z"/>
+      </svg>
+      <h3>Customer impact</h3>
+      <p>Turned "we're exploring AI" into deployed, adopted, measured outcomes — then made the customer believe it was their idea. Which, strategically, it was.</p>
+      <div class="meter"><i data-fill="97"></i></div>
+      <div class="score"><span>Outcome realisation</span><b>97 / 100</b></div>
+    </article>
+
+    <article class="glass ach">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#icg)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3 4 7v5.4c0 4.6 3.4 7.9 8 8.6 4.6-.7 8-4 8-8.6V7l-8-4Z"/><path d="m8.8 12 2.3 2.3L15.6 9.8"/>
+      </svg>
+      <h3>Copilot expertise</h3>
+      <p>Knew which demo to run, which slide to skip, and exactly when to say "let me show you that live instead." Never once lost the room to a loading spinner.</p>
+      <div class="meter"><i data-fill="99"></i></div>
+      <div class="score"><span>Demo survival rate</span><b>99 / 100</b></div>
+    </article>
+
+    <article class="glass ach">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#icg)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/>
+        <path d="M16.5 5.4a3.2 3.2 0 0 1 0 5.9M18.5 14.4A6.5 6.5 0 0 1 21.5 20"/>
+      </svg>
+      <h3>Team support</h3>
+      <p>The person you pinged at 22:41 the night before the QBR. Replied in four minutes with the deck, the environment, and a tenant that actually worked.</p>
+      <div class="meter"><i data-fill="100"></i></div>
+      <div class="score"><span>Teammate reliability</span><b>100 / 100</b></div>
+    </article>
+
+    <article class="glass ach">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#icg)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2.6 14.4 9h6.8l-5.5 4 2.1 6.6L12 15.7 6.2 19.6 8.3 13 2.8 9h6.8L12 2.6Z"/>
+      </svg>
+      <h3>AI evangelism</h3>
+      <p>Converted sceptics, CFOs and at least one person who still prints their emails. Measured in hallway conversations that quietly became roadmap items.</p>
+      <div class="meter"><i data-fill="96"></i></div>
+      <div class="score"><span>Hearts &amp; minds</span><b>96 / 100</b></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ======================= OUTRO ============================ -->
+<section class="bound outro">
+  <p class="eyebrow reveal" style="justify-content:center">Deployment ring: production</p>
+  <h2 class="reveal">Good luck, <span class="grad-text">Jack</span>.</h2>
+  <p class="reveal">Same brain, new workload. The Copilot SE chapter closes, the AI Workforce Seller chapter opens — and yes, he'll still be around.</p>
+  <div class="actions reveal">
+    <button class="btn primary" id="btnLaunch" type="button">▶ Rehearse T-0</button>
+    <button class="btn" id="btnBanner" type="button">⚡ Force status update</button>
+    <a class="btn" href="#top">↑ Back to the clock</a>
+  </div>
+</section>
+
+<footer>
+  <div>Jack vNext · Launch sequence · Built with excessive affection</div>
+  <div><b>Quotes are affectionately fictional. Statistics are aggressively estimated. Jack is real.</b></div>
+  <div><b>Keyboard: L = launch · B = banner · R = reset</b></div>
+</footer>
+
+</main>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ========================================================
+     CONFIG — change these two lines to retarget the countdown
+     ======================================================== */
+  const LAUNCH_AT   = '2026-10-23T17:00:00+01:00'; // Jack's last day as a Copilot SE
+  const SEQUENCE_AT = '2026-10-02T00:00:00+01:00'; // when the 21-day sequence began
+
+  const LAUNCH = new Date(LAUNCH_AT).getTime();
+  const START  = new Date(SEQUENCE_AT).getTime();
+  const SPAN   = LAUNCH - START;
+
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ========================================================
+     1. NEURAL NETWORK BACKGROUND
+     ======================================================== */
+  const net = $('#neural');
+  const nctx = net.getContext('2d');
+  let W = 0, H = 0, DPR = 1, nodes = [], pulses = [];
+  const PALETTE = ['103,232,249', '59,130,246', '139,92,246', '232,121,249'];
+
+  function sizeNet() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = net.clientWidth; H = net.clientHeight;
+    net.width = Math.floor(W * DPR); net.height = Math.floor(H * DPR);
+    nctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    buildNodes();
+  }
+  function buildNodes() {
+    const density = clamp(Math.round((W * H) / 15500), 34, 128);
+    nodes = Array.from({ length: density }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .26, vy: (Math.random() - .5) * .26,
+      r: Math.random() * 1.7 + .8,
+      c: PALETTE[(Math.random() * PALETTE.length) | 0],
+      ph: Math.random() * Math.PI * 2
+    }));
+    pulses = [];
+  }
+  const LINK = 158;
+
+  function drawNet(t) {
+    nctx.clearRect(0, 0, W, H);
+    const mx = pointer.x, my = pointer.y;
+
+    for (const n of nodes) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < -40) n.x = W + 40; if (n.x > W + 40) n.x = -40;
+      if (n.y < -40) n.y = H + 40; if (n.y > H + 40) n.y = -40;
+      // gentle cursor repulsion
+      if (mx > -1) {
+        const dx = n.x - mx, dy = n.y - my, d2 = dx * dx + dy * dy;
+        if (d2 < 24000 && d2 > 1) { const f = (1 - d2 / 24000) * .55, d = Math.sqrt(d2); n.x += (dx / d) * f * 3; n.y += (dy / d) * f * 3; }
+      }
+    }
+
+    // synapses
+    nctx.lineWidth = 1;
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        if (Math.abs(dx) > LINK || Math.abs(dy) > LINK) continue;
+        const d = Math.hypot(dx, dy);
+        if (d > LINK) continue;
+        const o = (1 - d / LINK) * .32;
+        nctx.strokeStyle = `rgba(${a.c},${o})`;
+        nctx.beginPath(); nctx.moveTo(a.x, a.y); nctx.lineTo(b.x, b.y); nctx.stroke();
+        if (Math.random() < 0.00042 && pulses.length < 46) pulses.push({ a, b, p: 0, s: .012 + Math.random() * .02, c: a.c });
+      }
+    }
+
+    // data packets travelling the synapses
+    for (let i = pulses.length - 1; i >= 0; i--) {
+      const p = pulses[i]; p.p += p.s;
+      if (p.p >= 1) { pulses.splice(i, 1); continue; }
+      const x = p.a.x + (p.b.x - p.a.x) * p.p, y = p.a.y + (p.b.y - p.a.y) * p.p;
+      const fade = Math.sin(p.p * Math.PI);
+      nctx.fillStyle = `rgba(${p.c},${.9 * fade})`;
+      nctx.beginPath(); nctx.arc(x, y, 2.1, 0, 7); nctx.fill();
+      nctx.fillStyle = `rgba(${p.c},${.16 * fade})`;
+      nctx.beginPath(); nctx.arc(x, y, 7, 0, 7); nctx.fill();
+    }
+
+    // nodes
+    for (const n of nodes) {
+      const tw = .55 + Math.sin(t * .0016 + n.ph) * .45;
+      nctx.fillStyle = `rgba(${n.c},${.18 * tw})`;
+      nctx.beginPath(); nctx.arc(n.x, n.y, n.r * 4.4, 0, 7); nctx.fill();
+      nctx.fillStyle = `rgba(${n.c},${.92 * tw})`;
+      nctx.beginPath(); nctx.arc(n.x, n.y, n.r, 0, 7); nctx.fill();
+    }
+  }
+
+  const pointer = { x: -999, y: -999 };
+  window.addEventListener('pointermove', e => { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
+  window.addEventListener('pointerleave', () => { pointer.x = pointer.y = -999; });
+
+  /* ========================================================
+     2. CONFETTI / PARTICLE EXPLOSION LAYER
+     ======================================================== */
+  const fx = $('#fx');
+  const fctx = fx.getContext('2d');
+  let bits = [];
+  const CONFETTI = ['#67e8f9', '#3b82f6', '#8b5cf6', '#e879f9', '#fbbf24', '#ffffff', '#22d3ee'];
+
+  function sizeFx() {
+    fx.width = Math.floor(fx.clientWidth * DPR);
+    fx.height = Math.floor(fx.clientHeight * DPR);
+    fctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+
+  function burst(x, y, count = 90, power = 15) {
+    for (let i = 0; i < count; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const v = Math.random() * power + 2.5;
+      bits.push({
+        x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 3.5,
+        w: Math.random() * 9 + 4, h: Math.random() * 5 + 3,
+        c: CONFETTI[(Math.random() * CONFETTI.length) | 0],
+        rot: Math.random() * 6.3, vr: (Math.random() - .5) * .34,
+        life: 1, dec: .0045 + Math.random() * .006,
+        ribbon: Math.random() < .55
+      });
+    }
+  }
+  function rain(count = 70) {
+    for (let i = 0; i < count; i++) {
+      bits.push({
+        x: Math.random() * fx.clientWidth, y: -30 - Math.random() * 220,
+        vx: (Math.random() - .5) * 2.4, vy: Math.random() * 2.6 + 1.6,
+        w: Math.random() * 9 + 4, h: Math.random() * 5 + 3,
+        c: CONFETTI[(Math.random() * CONFETTI.length) | 0],
+        rot: Math.random() * 6.3, vr: (Math.random() - .5) * .3,
+        life: 1, dec: .0022 + Math.random() * .003, ribbon: Math.random() < .6
+      });
+    }
+  }
+
+  function drawFx() {
+    fctx.clearRect(0, 0, fx.clientWidth, fx.clientHeight);
+    for (let i = bits.length - 1; i >= 0; i--) {
+      const b = bits[i];
+      b.vy += .17; b.vx *= .992; b.vy *= .992;
+      b.x += b.vx; b.y += b.vy; b.rot += b.vr; b.life -= b.dec;
+      if (b.life <= 0 || b.y > fx.clientHeight + 90) { bits.splice(i, 1); continue; }
+      fctx.save();
+      fctx.globalAlpha = clamp(b.life, 0, 1);
+      fctx.translate(b.x, b.y); fctx.rotate(b.rot);
+      fctx.fillStyle = b.c;
+      if (b.ribbon) fctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h);
+      else { fctx.beginPath(); fctx.arc(0, 0, b.h * .62, 0, 7); fctx.fill(); }
+      fctx.restore();
+    }
+  }
+
+  /* ========================================================
+     3. MASTER RENDER LOOP
+     ======================================================== */
+  let running = true;
+  function loop(t) {
+    if (running) { if (!reduced) drawNet(t); drawFx(); }
+    requestAnimationFrame(loop);
+  }
+  document.addEventListener('visibilitychange', () => { running = !document.hidden; });
+
+  function sizeAll() { sizeNet(); sizeFx(); }
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(sizeAll, 160); });
+  sizeAll();
+  requestAnimationFrame(loop);
+
+  /* ========================================================
+     4. COUNTDOWN
+     ======================================================== */
+  const el = {
+    d: $('#n-d'), h: $('#n-h'), m: $('#n-m'), s: $('#n-s'),
+    ud: $('#u-d'), uh: $('#u-h'), um: $('#u-m'), us: $('#u-s'),
+    fill: $('#fill'), pct: $('#progPct'), dayOf: $('#dayOf'),
+    phase: $('#progPhase'), railMid: $('#railMid')
+  };
+  const prev = { d: null, h: null, m: null, s: null };
+  let launched = false;
+
+  const PHASES = [
+    [21, 'Phase: blissful denial'],
+    [15, 'Phase: optimistic scheduling'],
+    [11, 'Phase: creeping realisation'],
+    [8,  'Phase: controlled panic'],
+    [5,  'Phase: knowledge transfer'],
+    [3,  'Phase: handover sprint'],
+    [1,  'Phase: farewell tour'],
+    [0,  'Phase: release candidate']
+  ];
+
+  function tickUnit(unit, node, key, value) {
+    const str = String(value).padStart(2, '0');
+    if (prev[key] === str) return;
+    prev[key] = str;
+    node.textContent = str;
+    if (reduced) return;
+    unit.classList.remove('tick');
+    void unit.offsetWidth;
+    unit.classList.add('tick');
+  }
+
+  function tick() {
+    const now = Date.now();
+    const left = LAUNCH - now;
+
+    if (left <= 0) {
+      tickUnit(el.ud, el.d, 'd', 0); tickUnit(el.uh, el.h, 'h', 0);
+      tickUnit(el.um, el.m, 'm', 0); tickUnit(el.us, el.s, 's', 0);
+      el.fill.style.width = '100%';
+      el.pct.textContent = '100.0%';
+      el.dayOf.textContent = 'Shipped';
+      el.phase.textContent = 'Phase: generally available';
+      el.railMid.textContent = 'Deployment complete · Jack v2.0 live in production';
+      if (!launched) { launched = true; doLaunch(); }
+      paintMiles(0);
+      return;
+    }
+
+    const secs = Math.floor(left / 1000);
+    const d = Math.floor(secs / 86400);
+    const h = Math.floor(secs / 3600) % 24;
+    const m = Math.floor(secs / 60) % 60;
+    const s = secs % 60;
+
+    tickUnit(el.ud, el.d, 'd', d);
+    tickUnit(el.uh, el.h, 'h', h);
+    tickUnit(el.um, el.m, 'm', m);
+    tickUnit(el.us, el.s, 's', s);
+
+    el.us.classList.toggle('crit', d === 0 && h === 0 && m < 10);
+    el.um.classList.toggle('crit', d === 0 && h < 1);
+
+    const frac = clamp((now - START) / SPAN, 0, 1);
+    el.fill.style.width = (frac * 100).toFixed(2) + '%';
+    el.pct.textContent = (frac * 100).toFixed(1) + '%';
+
+    const totalDays = Math.max(1, Math.floor(SPAN / 86400000));
+    const dayNum = clamp(Math.floor(frac * totalDays) + 1, 1, totalDays);
+    el.dayOf.textContent = `Day ${dayNum} of ${totalDays}`;
+
+    const phase = PHASES.find(p => d >= p[0]) || PHASES[PHASES.length - 1];
+    el.phase.textContent = phase[1];
+
+    paintMiles(d);
+    paintStats(frac, secs);
+  }
+
+  /* ========================================================
+     5. MILESTONES
+     ======================================================== */
+  const mileEls = $$('#miles .mile');
+  let lastMileKey = '';
+  function paintMiles(daysLeft) {
+    const key = String(daysLeft);
+    if (key === lastMileKey) return;
+    lastMileKey = key;
+    mileEls.forEach(node => {
+      const from = +node.dataset.from, to = +node.dataset.to;
+      const state = node.querySelector('[data-state]');
+      node.classList.remove('now', 'done');
+      if (daysLeft > from) { state.textContent = 'Queued'; }
+      else if (daysLeft >= to) { node.classList.add('now'); state.textContent = 'In progress'; }
+      else { node.classList.add('done'); state.textContent = 'Complete'; }
+    });
+  }
+
+  /* ========================================================
+     6. LIVE STATISTICS (humorous, deterministic-ish)
+     ======================================================== */
+  const statDefs = {
+    demos:  { start: 47,   end: 0,  notes: [
+      'Two are "quick 15 min walkthroughs". They are not.',
+      'One will be rescheduled. Possibly twice.',
+      'Includes 3 demos that are really just vibes.',
+      'Tenant status: miraculously still working.'
+    ]},
+    chats:  { start: 1428, end: 0,  notes: [
+      '94% will begin with "sorry, quick one".',
+      'Unread badge currently achieving sentience.',
+      'Estimated 211 are just a thumbs-up emoji.',
+      'Someone is typing. They have been for 9 minutes.'
+    ]},
+    coffee: { start: 78,   end: 0,  notes: [
+      'Does not include the one going cold on his desk.',
+      'Oat milk supply: critical.',
+      '4 will be abandoned mid-meeting.',
+      'Caffeine half-life exceeds notice period.'
+    ]},
+    around: { start: 3,    end: 64, notes: [
+      'He means it. He really does.',
+      'Peak frequency expected in final 48 hours.',
+      'Confidence interval: he will be around.',
+      'Also counts: "just ping me anytime".'
+    ]}
+  };
+  const statNodes = {};
+  $$('#stats .stat').forEach(node => {
+    const k = node.dataset.k;
+    const spark = node.querySelector('[data-spark]');
+    spark.innerHTML = Array.from({ length: 14 }, () => '<i style="height:20%"></i>').join('');
+    statNodes[k] = {
+      node, val: node.querySelector('[data-val]'), note: node.querySelector('[data-note]'),
+      bars: Array.from(spark.children), hist: [], lastNote: -1, shown: null
+    };
+  });
+
+  const fmt = n => n.toLocaleString('en-GB');
+
+  function paintStats(frac, secs) {
+    const wobble = Math.sin(secs * 0.9) * 0.5 + Math.sin(secs * 0.31) * 0.5;
+    Object.keys(statDefs).forEach((k, idx) => {
+      const def = statDefs[k], ref = statNodes[k];
+      const base = def.start + (def.end - def.start) * frac;
+      const jitter = Math.sin(secs * 0.17 + idx * 2.1) * Math.max(1, Math.abs(def.start - def.end) * 0.012);
+      const v = Math.max(0, Math.round(base + jitter + wobble));
+
+      if (ref.shown !== v) { ref.shown = v; ref.val.textContent = fmt(v); }
+
+      ref.hist.push(v);
+      if (ref.hist.length > 14) ref.hist.shift();
+      const lo = Math.min(...ref.hist), hi = Math.max(...ref.hist), range = Math.max(1, hi - lo);
+      ref.bars.forEach((bar, i) => {
+        const h = ref.hist[i] == null ? 0 : 18 + ((ref.hist[i] - lo) / range) * 82;
+        bar.style.height = h + '%';
+      });
+
+      const ni = Math.floor(secs / 7) % def.notes.length;
+      if (ni !== ref.lastNote) { ref.lastNote = ni; ref.note.textContent = def.notes[ni]; }
+    });
+  }
+
+  /* ========================================================
+     7. ROTATING QUOTES
+     ======================================================== */
+  const QUOTES = [
+    { t: "Jack could make a Copilot demo land in a room full of people who'd already decided it wouldn't. I've watched him do it three times. It never got less annoying.", n: 'Priya Raghavan', r: 'Technical Specialist Manager' },
+    { t: "I asked him a 'quick question' about agent grounding in March. He is still answering it. I have learned more than I ever wanted to.", n: 'Tom Fairweather', r: 'Account Executive' },
+    { t: "He once rebuilt a demo tenant from scratch forty minutes before a board presentation and walked in looking like he'd just come back from lunch.", n: 'Sofia Lindqvist', r: 'Customer Success Lead' },
+    { t: "The AI Workforce team have no idea what's about to hit them. We're not warning them. Let them find out the way we did.", n: 'Daniel Okafor', r: 'Partner Solution Architect' },
+    { t: "Genuinely my favourite thing about Jack is that he never once made anyone feel stupid for asking the basic question. That's rarer than the technical stuff.", n: 'Hannah Brett', r: 'Copilot Adoption Specialist' },
+    { t: "He says he'll still be around. I've put it in the risk register as 'unlikely but we're all choosing to believe it'.", n: 'Marcus Webb', r: 'Programme Manager' },
+    { t: "Three weeks' notice and he's still taking the customer calls nobody else wants. Classic Jack. Deeply irritating. Go well, mate.", n: 'Aisha Rahman', r: 'Solution Engineer' }
+  ];
+
+  const qbody = $('#qbody'), qdots = $('#qdots');
+  const initials = name => name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+
+  QUOTES.forEach((q, i) => {
+    const d = document.createElement('div');
+    d.className = 'q' + (i === 0 ? ' on' : '');
+    d.innerHTML =
+      `<p>&ldquo;${q.t}&rdquo;</p>
+       <div class="who"><div class="av">${initials(q.n)}</div>
+         <div><b>${q.n}</b><span>${q.r}</span></div>
+       </div>`;
+    qbody.appendChild(d);
+
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', `Quote ${i + 1}`);
+    b.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+    b.addEventListener('click', () => showQuote(i, true));
+    qdots.appendChild(b);
+  });
+
+  const qSlides = $$('.q', qbody), qBtns = $$('button', qdots);
+  let qi = 0, qTimer = null;
+
+  function showQuote(i, manual) {
+    qSlides[qi].classList.remove('on');
+    qBtns[qi].setAttribute('aria-current', 'false');
+    qi = (i + qSlides.length) % qSlides.length;
+    qSlides[qi].classList.add('on');
+    qBtns[qi].setAttribute('aria-current', 'true');
+    if (manual) resetQuoteTimer();
+  }
+  function resetQuoteTimer() {
+    clearInterval(qTimer);
+    qTimer = setInterval(() => showQuote(qi + 1), 7000);
+  }
+  resetQuoteTimer();
+
+  /* ========================================================
+     8. RANDOM STATUS BANNER — every 30 seconds
+     ======================================================== */
+  const BANNERS = [
+    'Jack is probably in another Teams meeting.',
+    'AI Workforce Seller training loading…',
+    'Copilot expertise successfully exported.',
+    'Migration status: 87% complete.',
+    'Warning: SE knowledge base approaching read-only mode.',
+    'Deploying Jack v2.0…'
+  ];
+  const bannerEl = $('#banner'), bannerTxt = $('#bannerTxt');
+  let lastBanner = -1, hideBannerT = null;
+
+  function showBanner() {
+    let i;
+    do { i = (Math.random() * BANNERS.length) | 0; } while (i === lastBanner && BANNERS.length > 1);
+    lastBanner = i;
+    bannerTxt.textContent = BANNERS[i];
+    bannerEl.classList.add('on');
+    clearTimeout(hideBannerT);
+    hideBannerT = setTimeout(() => bannerEl.classList.remove('on'), 6200);
+  }
+  setTimeout(showBanner, 6000);
+  setInterval(showBanner, 30000);
+
+  /* ========================================================
+     9. LAUNCH SEQUENCE (T-0 celebration)
+     ======================================================== */
+  let launchFx = [];
+  function doLaunch() {
+    document.body.classList.add('launched');
+    const cx = fx.clientWidth / 2, cy = fx.clientHeight * .4;
+
+    burst(cx, cy, 190, 22);
+    rain(140);
+
+    launchFx.forEach(clearTimeout);
+    launchFx = [];
+    for (let i = 1; i <= 9; i++) {
+      launchFx.push(setTimeout(() => {
+        burst(
+          fx.clientWidth * (.14 + Math.random() * .72),
+          fx.clientHeight * (.16 + Math.random() * .5),
+          80 + ((Math.random() * 70) | 0),
+          11 + Math.random() * 10
+        );
+      }, i * 420));
+    }
+    launchFx.push(setTimeout(() => rain(120), 1700));
+    launchFx.push(setTimeout(() => rain(110), 3400));
+    launchFx.push(setTimeout(() => burst(cx, cy, 150, 19), 4600));
+  }
+
+  function rehearse() {
+    const wasLaunched = document.body.classList.contains('launched');
+    doLaunch();
+    if (!wasLaunched && Date.now() < LAUNCH) {
+      setTimeout(() => document.body.classList.remove('launched'), 11000);
+    }
+  }
+
+  $('#btnLaunch').addEventListener('click', rehearse);
+  $('#btnBanner').addEventListener('click', showBanner);
+
+  window.addEventListener('keydown', e => {
+    if (e.target.matches('input,textarea')) return;
+    const k = e.key.toLowerCase();
+    if (k === 'l') rehearse();
+    if (k === 'b') showBanner();
+    if (k === 'r') { bits = []; launchFx.forEach(clearTimeout); document.body.classList.remove('launched'); }
+  });
+
+  /* ========================================================
+     10. SCROLL REVEALS + ACHIEVEMENT METERS
+     ======================================================== */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      $$('[data-fill]', entry.target).forEach((bar, i) => {
+        setTimeout(() => { bar.style.width = bar.dataset.fill + '%'; }, 220 + i * 110);
+      });
+      io.unobserve(entry.target);
+    });
+  }, { threshold: .18, rootMargin: '0px 0px -8% 0px' });
+
+  $$('.reveal, .stagger').forEach(n => io.observe(n));
+
+  // achievement meters live inside .stagger cards — observe each card too
+  const io2 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const bar = entry.target;
+      setTimeout(() => { bar.style.width = bar.dataset.fill + '%'; }, 320);
+      io2.unobserve(bar);
+    });
+  }, { threshold: .4 });
+  $$('[data-fill]').forEach(b => io2.observe(b));
+
+  /* ========================================================
+     11. BOOT
+     ======================================================== */
+  tick();
+  setInterval(tick, 1000);
+  requestAnimationFrame(() => document.body.classList.add('ready'));
+
+})();
+</script>
+</body>
+</html>
